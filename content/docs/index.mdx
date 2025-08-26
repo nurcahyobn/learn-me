@@ -1,13 +1,164 @@
 ---
-title: Hello World
+title: Project Gaya
 description: Your first document
 ---
 
-Welcome to the docs! You can start writing documents in `/content/docs`.
+# 🎯 Tujuan Pembelajaran
 
-## What is Next?
+* Siswa memahami konsep gaya (dorongan/tarikan).
+* Menunjukkan pengaruh gaya terhadap gerak benda (bergerak, berhenti, berubah arah, berubah bentuk).
 
-<Cards>
-  <Card title="Learn more about Next.js" href="https://nextjs.org/docs" />
-  <Card title="Learn more about Fumadocs" href="https://fumadocs.vercel.app" />
-</Cards>
+---
+
+## 👩‍💻 Desain Project di Scratch
+
+### Judul: **"Eksperimen Gaya Mendorong Kotak"**
+
+### 🎮 Alur Permainan:
+
+1. Terdapat **sprite Kotak** di atas lantai.
+2. Pemain menekan tombol **panah kanan** → karakter mendorong kotak.
+3. Jika ditekan terus, kotak **bergerak lebih cepat** (simulasi besar gaya → percepatan lebih besar).
+4. Jika tombol dilepas → kotak melambat dan akhirnya berhenti (gaya gesek).
+5. Ada indikator **besar gaya (F)** dan **kecepatan (v)** di layar.
+6. Tambahan eksperimen:
+
+   * Jika kotak lebih berat (massa lebih besar), kotak lebih sulit didorong.
+   * Bisa ditambahkan slider "massa" untuk siswa mencoba pengaruhnya.
+
+---
+
+## 🔧 Script Scratch (contoh logika)
+
+### Sprite **Kotak**
+
+```bash
+when green flag clicked
+set [velocity v] to (0)
+forever
+   if <key (right arrow) pressed?> then
+      change [velocity v] by (1) // gaya mendorong
+   else
+      change [velocity v] by (-0.2) // gaya gesek melawan
+   end
+   if <(velocity) < 0> then
+      set [velocity v] to (0)
+   end
+   change x by (velocity)
+   wait (0.1) seconds
+end
+```
+
+### Sprite **Teks / Indikator**
+
+* Menampilkan `Gaya: ...` saat tombol ditekan.
+* Menampilkan `Kecepatan: ...` dari variabel velocity.
+
+---
+
+## 🧪 Konsep IPA yang Ditunjukkan
+
+1. **Gaya dapat mengubah gerak benda** → kotak bergerak ketika didorong.
+2. **Semakin besar gaya, semakin cepat perubahan gerak (percepatan)**.
+3. **Gesekan menyebabkan benda berhenti** jika tidak ada gaya.
+4. **Massa mempengaruhi percepatan** → semakin berat benda, semakin sulit bergerak.
+
+---
+
+
+Mantap 👍 kita buat **langkah demi langkah project Scratch IPA tentang gaya** (materi: “Pengaruh gaya terhadap gerak benda”).
+
+---
+
+## 🪜 Langkah-langkah di Scratch
+
+### 1. Siapkan Sprite
+
+* **Kotak** (bisa pilih sprite “Box” atau gambar sendiri persegi).
+* **Karakter Pendorong** (contoh: sprite “Boy” atau “Girl”).
+* **Lantai** (bisa gambar sederhana atau ambil sprite “Line”/“Ground”).
+* **Teks / Indikator** → tidak perlu sprite, cukup gunakan **variabel**.
+
+---
+
+### 2. Buat Variabel
+
+* `velocity` (kecepatan kotak).
+* `gaya` (besarnya dorongan).
+* `massa` (berat kotak, bisa slider).
+
+---
+
+### 3. Script Sprite **Kotak**
+
+Masukkan blok berikut:
+
+```bash
+when green flag clicked
+set [velocity v] to (0)
+set [massa v] to (5) // bisa diganti dengan slider
+forever
+   if <key (right arrow) pressed?> then
+      set [gaya v] to (10) // besar gaya dorong
+      change [velocity v] by (gaya / massa) // hukum Newton F = m.a
+   else
+      set [gaya v] to (0)
+      change [velocity v] by (-0.5) // gaya gesek melawan
+   end
+
+   if <(velocity) < 0> then
+      set [velocity v] to (0)
+   end
+
+   change x by (velocity)
+   wait (0.1) seconds
+end
+```
+
+---
+
+### 4. Script Sprite **Karakter Pendorong**
+
+Biar animasinya realistis saat mendorong:
+
+```bash
+when green flag clicked
+forever
+   if <key (right arrow) pressed?> then
+      switch costume to [push v]
+   else
+      switch costume to [stand v]
+   end
+end
+```
+
+---
+
+### 5. Menampilkan Indikator
+
+Gunakan `say` atau `monitor variabel`:
+
+* Tampilkan `velocity` (kecepatan).
+* Tampilkan `gaya`.
+* Tampilkan `massa`.
+
+Contoh:
+
+```bash
+when green flag clicked
+forever
+   say (join "F: " (gaya)) for (0.1) secs
+   say (join "v: " (velocity)) for (0.1) secs
+end
+```
+
+---
+
+## 📚 Hasil Akhir
+
+* Saat tombol panah kanan ditekan → kotak bergerak semakin cepat.
+* Jika dilepas → kotak melambat dan berhenti (gesekan).
+* Jika `massa` dinaikkan → kotak lebih sulit bergerak.
+* Siswa bisa coba variasi gaya dan massa → untuk memahami **Hukum Newton II (F = m × a)**.
+
+---
