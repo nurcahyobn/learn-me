@@ -1,17 +1,78 @@
 ---
-title: Components
+title: Permainan quis
 description: Components
 ---
 
-## Code Block
+Konsep ini bisa dipakai untuk latihan matematika (penjumlahan, pengurangan, perkalian, dll).
 
-```js
-console.log('Hello World');
+---
+
+### 🎮 Alur Permainan
+
+1. **Sprite "Host"** menampilkan soal.
+2. Pemain mengetik jawaban lewat **`ask [ ] and wait`**.
+3. Sprite mengecek jawaban benar atau salah.
+4. Menggunakan **broadcast** untuk mengatur alur (misalnya broadcast `Soal1`, `Soal2`, `Benar`, `Salah`).
+5. Skor bertambah jika benar.
+
+---
+
+### 🧩 Blok Kodenya (contoh sederhana)
+
+#### 1. Variabel yang dibutuhkan
+
+* `Skor`
+* `JawabanBenar`
+* `JawabanPemain`
+
+---
+
+#### 2. Script di Sprite Host (pemberi soal)
+
+```bash
+when green flag clicked
+set [Skor v] to (0)
+broadcast [Soal1 v]
+
+when I receive [Soal1 v]
+set [JawabanBenar v] to (5 + 7) // soal 5 + 7
+ask [Berapakah 5 + 7 ?] and wait
+set [JawabanPemain v] to (answer)
+if <(JawabanPemain) = (JawabanBenar)> then
+   change [Skor v] by (1)
+   broadcast [Benar v]
+else
+   broadcast [Salah v]
+end
+wait (1) secs
+broadcast [Soal2 v]
+
+when I receive [Soal2 v]
+set [JawabanBenar v] to (9 - 4) // soal 9 - 4
+ask [Berapakah 9 - 4 ?] and wait
+set [JawabanPemain v] to (answer)
+if <(JawabanPemain) = (JawabanBenar)> then
+   change [Skor v] by (1)
+   broadcast [Benar v]
+else
+   broadcast [Salah v]
+end
+wait (1) secs
+say (join [Kuis selesai! Skormu: ] (Skor)) for (3) secs
 ```
 
-## Cards
+---
 
-<Cards>
-  <Card title="Learn more about Next.js" href="https://nextjs.org/docs" />
-  <Card title="Learn more about Fumadocs" href="https://fumadocs.vercel.app" />
-</Cards>
+#### 3. Sprite Feedback (opsional)
+
+Sprite lain bisa menampilkan respon berdasarkan broadcast.
+
+```bash
+when I receive [Benar v]
+say [Jawaban kamu benar!] for (2) secs
+
+when I receive [Salah v]
+say [Jawaban kamu salah!] for (2) secs
+```
+
+---
