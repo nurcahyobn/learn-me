@@ -1,0 +1,80 @@
+---
+title: Rini Ismiani
+description: Project Scratch - Kerajinan Bahan Keras
+---
+
+Oke, aku rapikan biar lebih mudah dipahami 👇
+
+---
+
+### 🎨 Project Scratch: Kerajinan Bahan Keras (Celengan dari Kaleng)
+
+**Tujuan:** Membuat animasi sederhana tentang proses membuat celengan dari kaleng bekas.
+
+---
+
+### 1. Siapkan Sprite
+
+* **Sprite 1:** Kaleng
+* **Sprite 2:** Gunting
+* **Sprite 3:** Cat warna
+* **Sprite 4:** Celengan Jadi
+
+---
+
+### 2. Kode untuk Sprite **Kaleng**
+
+```perl
+when green flag clicked
+say "Ini adalah kaleng bekas." for 2 seconds
+wait 1 second
+say "Mari kita buat kerajinan celengan!" for 2 seconds
+broadcast [Mulai Kerajinan v]
+```
+
+---
+
+### 3. Kode untuk Sprite **Gunting**
+
+```perl
+when I receive [Mulai Kerajinan v]
+go to [Kaleng v]
+say "Potong bagian atas kaleng." for 2 seconds
+broadcast [Mulai Mewarnai v]
+```
+
+---
+
+### 4. Kode untuk Sprite **Cat**
+
+```perl
+when I receive [Mulai Mewarnai v]
+say "Warnai kaleng dengan cat agar lebih indah." for 2 seconds
+broadcast [Kerajinan Selesai v]
+```
+
+---
+
+### 5. Kode untuk Sprite **Celengan Jadi**
+
+```perl
+when I receive [Kerajinan Selesai v]
+show
+say "Celengan dari kaleng bekas sudah jadi!" for 3 seconds
+```
+
+---
+
+### 6. Alur Broadcast
+
+1. **Kaleng** selesai → broadcast **Mulai Kerajinan**
+2. **Gunting** selesai → broadcast **Mulai Mewarnai**
+3. **Cat** selesai → broadcast **Kerajinan Selesai**
+4. **Celengan Jadi** muncul
+
+---
+
+Dengan begitu, ketika bendera hijau ditekan, Scratch akan menampilkan animasi urutan membuat kerajinan keras dari kaleng bekas.
+
+---
+
